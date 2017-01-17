@@ -29,5 +29,10 @@
  * @returns {Buffer}
  */
 module.exports = function(string, encoding) {
-    return Buffer.from(string, encoding);
+    // Remove NULL
+    var str = string.replace(/\x00/g,'');
+    // Normalize date
+    str = str.replace(/0000-/g,'2000-');
+
+    return Buffer.from(str, encoding);
 };
